@@ -20,8 +20,8 @@ clc; clear all; cd mex;
 
 if ispc
     disp('PC');
-    include = ' -Ic:\OpenCV2.2\include\opencv\ -Ic:\OpenCV2.2\include\';
-    libpath = 'c:\OpenCV2.2\lib\';
+    include = ' -Id:\libs\opencv\build\include\ -Id:\libs\opencv\build\include\opencv\';
+    libpath = 'd:\libs\opencv\build\x64\vc11\lib\';
     files = dir([libpath '*.lib']);
     
     lib = [];
@@ -29,13 +29,13 @@ if ispc
         lib = [lib ' ' libpath files(i).name];
     end
     
-    eval(['mex lk.cpp -O' include lib]);
-    mex -O -c tld.cpp
+%     eval(['mex lk.cpp -O' include lib]);
+%     mex -O -c tld.cpp
     mex -O fern.cpp tld.obj
-    mex -O linkagemex.cpp
-    mex -O bb_overlap.cpp
-    mex -O warp.cpp
-    mex -O distance.cpp
+%     mex -O linkagemex.cpp
+%     mex -O bb_overlap.cpp
+%     mex -O warp.cpp
+%     mex -O distance.cpp
 end
 
 if ismac

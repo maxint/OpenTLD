@@ -81,20 +81,20 @@ tld.target = img_patch(tld.img{1}.input,tld.bb(:,1));
 % Generate Positive Examples
 [pX,pEx,bbP] = tldGeneratePositiveData(tld,overlap,tld.img{1},tld.p_par_init);
 pY = ones(1,size(pX,2));
-% disp(['# P patterns: ' num2str(size(pX,2))]);
-% disp(['# P patches : ' num2str(size(pEx,2))]);
+disp(['# P patterns: ' num2str(size(pX,2))]);
+disp(['# P patches : ' num2str(size(pEx,2))]);
 
 % Correct initial bbox
 tld.bb(:,1) = bbP(1:4,:);
 
 % Variance threshold
 tld.var = var(pEx(:,1))/2;
-% disp(['Variance : ' num2str(tld.var)]);
+disp(['Variance : ' num2str(tld.var)]);
 
 % Generate Negative Examples
 [nX,nEx] = tldGenerateNegativeData(tld,overlap,tld.img{1});
-% disp(['# N patterns: ' num2str(size(nX,2))]);
-% disp(['# N patches : ' num2str(size(nEx,2))]);
+disp(['# N patterns: ' num2str(size(nX,2))]);
+disp(['# N patches : ' num2str(size(nEx,2))]);
 
 % Split Negative Data to Training set and Validation set
 [nX1,nX2,nEx1,nEx2] = tldSplitNegativeData(nX,nEx);

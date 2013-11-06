@@ -45,6 +45,8 @@ dt.conf2  = nan(1,num_dt); % Conservative Similarity (for integration with track
 dt.isin   = nan(3,num_dt); % detected (isin=1) or rejected (isin=0) by nearest neighbour classifier
 dt.patch  = nan(prod(tld.model.patchsize),num_dt); % Corresopnding patches
 
+display(sprintf('DET - after VAR & FERN: %d', num_dt))
+
 for i = 1:num_dt % for every remaining detection
     
     ex   = tldGetPattern(img,dt.bb(:,i),tld.model.patchsize); % measure patch
@@ -59,6 +61,8 @@ for i = 1:num_dt % for every remaining detection
 end
 
 idx = dt.conf1 > tld.model.thr_nn; % get all indexes that made it through the nearest neighbour
+
+display(sprintf('DET - after NN: %d', find(idx)))
 
 % output
 BB    = dt.bb(:,idx); % bounding boxes

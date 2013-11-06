@@ -21,9 +21,6 @@
 #include <map>
 #include <set>
 #include "tld.h"
-#ifdef _CHAR16T
-#define CHAR16_T
-#endif
 #include "mex.h" 
 using namespace std;
 
@@ -236,6 +233,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 		int step = numX / 10;
 
+        int pcount = 0, ncount = 0;
+        int pcount1 = 0, ncount1 = 0;
 		if (nrhs == 5) {
 			for (int j = 0; j < bootstrap; j++) {
 				for (int i = 0; i < step; i++) {
@@ -244,15 +243,22 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 						int I = k*step + i;
 						double *x = X+nTREES*I;
 						if (Y[I] == 1) {
-							if (measure_forest(x) <= thrP)
+                            ++pcount1;
+                            if (measure_forest(x) <= thrP) {
+                                ++pcount;
 								update(x,1,1);
+                            }
 						} else {
-							if (measure_forest(x) >= thrN)
+                            ++ncount1;
+                            if (measure_forest(x) >= thrN) {
+                                ++ncount;
 								update(x,0,1);
+                            }
 						}
 					}
 				}
 			}
+            mexPrintf("FEN - trained P: %d/%d, N: %d/%d\n", pcount, pcount1, ncount, ncount1);
 		}
 		if (nrhs == 6) {
 			double *idx   = mxGetPr(prhs[5]);

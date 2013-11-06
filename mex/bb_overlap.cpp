@@ -19,9 +19,6 @@
 #include <math.h>
 #include <vector>
 using namespace std;
-#ifdef _CHAR16T
-#define CHAR16_T
-#endif
 #include "mex.h" 
 
 

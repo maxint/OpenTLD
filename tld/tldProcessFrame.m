@@ -22,11 +22,11 @@ tld.img{I} = img_get(tld.source,I); % grab frame from camera / load image
 
 % TRACKER  ----------------------------------------------------------------
 
-[tBB tConf tValid tld] = tldTracking(tld,tld.bb(:,I-1),I-1,I); % frame-to-frame tracking (MedianFlow)
+[tBB, tConf, tValid, tld] = tldTracking(tld,tld.bb(:,I-1),I-1,I); % frame-to-frame tracking (MedianFlow)
 
 % DETECTOR ----------------------------------------------------------------
 
-[dBB dConf tld] = tldDetection(tld,I); % detect appearances by cascaded detector (variance filter -> ensemble classifier -> nearest neightbour)
+[dBB, dConf, tld] = tldDetection(tld,I); % detect appearances by cascaded detector (variance filter -> ensemble classifier -> nearest neightbour)
 
 % INTEGRATOR --------------------------------------------------------------
 

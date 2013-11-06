@@ -41,6 +41,8 @@ for i = 2:length(tld.source.idx) % for every frame
     tld = tldProcessFrame(tld,i); % process frame i
     tldDisplay(1,tld,i); % display results on frame i
     
+    pause(1)
+    
     if finish % finish if any key was pressed
         if tld.source.camera
             stoppreview(tld.source.vid);
@@ -56,7 +58,6 @@ for i = 2:length(tld.source.idx) % for every frame
         img = getframe;
         imwrite(img.cdata,[tld.output num2str(i,'%05d') '.png']);
     end
-        
     
 end
 

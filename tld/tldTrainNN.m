@@ -29,7 +29,9 @@ if ~isempty(pEx)
     x   = [pEx(:,1) x(:,idx)]; % always add the first positive patch as the first (important in initialization)
     y   = [1 y(:,idx)];
 end
-   
+
+pP = 0;
+pN = 0;
 for k = 1:1 % Bootstrap
    for i = 1:length(y)
        
@@ -37,6 +39,7 @@ for k = 1:1 % Bootstrap
        
        % Positive
        if y(i) == 1 && conf1 <= tld.model.thr_nn % 0.65
+           pP = pP + 1;
            if isnan(isin(2))
                tld.pex = x(:,i);
                continue;
@@ -50,7 +53,10 @@ for k = 1:1 % Bootstrap
        
        % Negative
        if y(i) == 0 && conf1 > 0.5
+           pN = pN + 1;
            tld.nex = [tld.nex x(:,i)];
        end
    end
 end
+   
+display(sprintf('NNC - trained P: %d/%d, N: %d/%d', pP, nP, pN, nN))

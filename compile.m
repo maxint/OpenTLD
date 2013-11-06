@@ -29,13 +29,13 @@ if ispc
         lib = [lib ' ' libpath files(i).name];
     end
     
-%     eval(['mex lk.cpp -O' include lib]);
-%     mex -O -c tld.cpp
+    eval(['mex lk.cpp -O' include lib]);
+    mex -O -c tld.cpp
     mex -O fern.cpp tld.obj
-%     mex -O linkagemex.cpp
-%     mex -O bb_overlap.cpp
-%     mex -O warp.cpp
-%     mex -O distance.cpp
+    mex -O linkagemex.cpp
+    mex -O bb_overlap.cpp
+    mex -O warp.cpp
+    mex -O distance.cpp
 end
 
 if ismac

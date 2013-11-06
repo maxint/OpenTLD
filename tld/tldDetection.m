@@ -62,7 +62,7 @@ end
 
 idx = dt.conf1 > tld.model.thr_nn; % get all indexes that made it through the nearest neighbour
 
-display(sprintf('DET - after NN: %d', find(idx)))
+display(sprintf('DET - after NN: %d', length(find(idx))))
 
 % output
 BB    = dt.bb(:,idx); % bounding boxes

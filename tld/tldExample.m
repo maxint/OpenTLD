@@ -38,10 +38,10 @@ tld = tldDisplay(0,tld); % initialize display
 
 for i = 2:length(tld.source.idx) % for every frame
     
+    display(sprintf('---- Frame %d ----', i))
+    
     tld = tldProcessFrame(tld,i); % process frame i
     tldDisplay(1,tld,i); % display results on frame i
-    
-    pause(1)
     
     if finish % finish if any key was pressed
         if tld.source.camera

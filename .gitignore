@@ -1,3 +1,6 @@
 *.mexw32
 *.mexw64
 tld.obj
+*.jpg
+init.txt
+_output/tld.txt

@@ -15,7 +15,7 @@
 % You should have received a copy of the GNU General Public License
 % along with TLD.  If not, see <http://www.gnu.org/licenses/>.
 
-function [BB2 Conf Valid tld] = tldTracking(tld,BB1,I,J)
+function [BB2, Conf, Valid, tld] = tldTracking(tld,BB1,I,J)
 % Estimates motion of bounding box BB1 from frame I to frame J
 
 % initialize output variables
@@ -44,6 +44,7 @@ patchJ   = tldGetPattern(tld.img{J},BB2,tld.model.patchsize); % sample patch in 
 [~,Conf] = tldNN(patchJ,tld); % estimate its Conservative Similarity (considering 50% of positive patches only)
 
 % Validity
+% NOTE: it's very important
 Valid    = tld.valid(I); % copy validity from previous frame
 if Conf > tld.model.thr_nn_valid, Valid = 1; end % tracker is inside the 'core'
 

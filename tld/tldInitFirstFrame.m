@@ -24,6 +24,9 @@ source.im0  = img_get(source,source.idx(1));
 % - from file
 if source.camera == 0 && exist([source.input '/init.txt'],'file')
     bb = dlmread([source.input '/init.txt']);
+    bb(3) = bb(1) + bb(3) - 1;
+    bb(4) = bb(2) + bb(4) - 1;
+    
     source.bb = bb(:);
     
     % check

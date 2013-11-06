@@ -17,7 +17,7 @@
 
 addpath(genpath('.')); init_workspace; 
 
-opt.source          = struct('camera',0,'input','_input/','bb0',[]); % camera/directory swith, directory_name, initial_bounding_box (if empty, it will be selected by the user)
+opt.source          = struct('camera',0,'input','20131105_095638/','bb0',[]); % camera/directory swith, directory_name, initial_bounding_box (if empty, it will be selected by the user)
 opt.output          = '_output/'; mkdir(opt.output); % output directory that will contain bounding boxes + confidence
 
 min_win             = 24; % minimal size of the object's bounding box in the scanning grid, it may significantly influence speed of TLD, set it to minimal size of the object
@@ -44,5 +44,7 @@ opt.control         = struct('maxbbox',maxbbox,'update_detector',update_detector
 %profile viewer;
 
 % Save results ------------------------------------------------------------
-dlmwrite([opt.output '/tld.txt'],[bb; conf]');
-disp('Results saved to ./_output.');
+if opt.source.camera == 0
+    dlmwrite([opt.output '/tld.txt'],[bb; conf]');
+    disp('Results saved to ./_output.');
+end

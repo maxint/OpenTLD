@@ -25,7 +25,7 @@ patchsize           = [15 15]; % size of normalized patch in the object detector
 fliplr              = 0; % if set to one, the model automatically learns mirrored versions of the object
 maxbbox             = 1; % fraction of evaluated bounding boxes in every frame, maxbox = 0 means detector is truned off, if you don't care about speed set it to 1
 update_detector     = 1; % online learning on/off, of 0 detector is trained only in the first frame and then remains fixed
-opt.plot            = struct('pex',1,'nex',1,'dt',1,'confidence',1,'target',1,'replace',0,'drawoutput',3,'draw',0,'pts',1,'help', 0,'patch_rescale',1,'save',0); 
+opt.plot            = struct('pex',1,'nex',1,'dt',1,'confidence',1,'target',0,'replace',0,'drawoutput',3,'draw',0,'pts',1,'help', 0,'patch_rescale',1,'save',0); 
 
 % Do-not-change -----------------------------------------------------------
 
